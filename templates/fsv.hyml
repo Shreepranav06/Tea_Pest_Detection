@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tea Pest Detection Model</title>
+    <link
+      href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link
+      href="{{ url_for('static', filename='css/style.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <video autoplay muted loop id="background-video">
+      <source
+        src="{{ url_for('static', filename='videos/background.mp4') }}"
+        type="video/mp4"
+      />
+      Your browser does not support HTML5 video.
+    </video>
+    <nav class="navbar" id="one">
+      <a class="navbar-brand" href="#" id="three">Tea Pest Detection Model</a>
+      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" id="four">
+        Help
+      </button>
+    </nav>
+    <div id="welcome-section">
+      <h1 class="welcome-message">Welcome, how can I help you?</h1>
+    </div>
+    <div id="facts-section" class="row justify-content-center">
+      <div class="col-md-2 fact-box">
+        <h4>Origin</h4>
+        <p>
+          Tea crops originated in East and South Asia, particularly in China.
+        </p>
+      </div>
+      <div class="col-md-2 fact-box">
+        <h4>Varieties</h4>
+        <p>
+          There are two main varieties: Camellia sinensis var. sinensis and
+          Camellia sinensis var. assamica.
+        </p>
+      </div>
+      <div class="col-md-2 fact-box">
+        <h4>Growing Conditions</h4>
+        <p>
+          Tea crops require humid subtropical climates, well-drained acidic
+          soils, and elevations up to 2,000 meters.
+        </p>
+      </div>
+      <div class="col-md-2 fact-box">
+        <h4>Harvesting</h4>
+        <p>
+          Tea leaves are harvested by hand or using machines, favoring young
+          leaves and buds for quality.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div id="chat-box" class="col-md-6 mb-4">
+          <div id="chat-log" class="border p-3 mb-3"></div>
+          <div class="input-group">
+            <input type="text" id="prompt-input" class="form-control" placeholder="Enter a prompt here">
+            <div class="input-group-append">
+              <button class="btn btn-primary" onclick="sendChat()">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div id="image-box" class="col-md-6 mb-4">
+          <div id="image-result"></div>
+          <div class="input-group mb-3">
+            <input type="file" id="image-input" class="form-control">
+            <div class="input-group-append">
+              <button class="btn btn-secondary" onclick="uploadImage()">Submit Image</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      function sendChat() {
+        const input = document.getElementById("chat-input").value;
+        fetch("/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: input }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const chatLog = document.getElementById("chat-log");
+            chatLog.innerHTML += `<div><strong>You:</strong> ${input}</div>`;
+            chatLog.innerHTML += `<div><strong>AI:</strong> ${data.response}</div>`;
+            document.getElementById("chat-input").value = ""; // Clear input
+          });
+      }
+
+      function uploadImage() {
+        const input = document.getElementById("image-input");
+        const formData = new FormData();
+        formData.append("file", input.files[0]);
+
+        fetch("/predict", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const imageResult = document.getElementById("image-result");
+            const imageUrl = URL.createObjectURL(input.files[0]);
+            imageResult.innerHTML = <img src="${imageUrl}" alt="Uploaded Image" style="max-width: 100%;"><p>Prediction: ${data.class}</p>;
+          });
+      }
+    </script>
+  </body>
+</html>

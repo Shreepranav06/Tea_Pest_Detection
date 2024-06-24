@@ -1,0 +1,221 @@
+/* Background video styling */
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  filter: brightness(70%);
+}
+
+#one {
+  background-color: rgba(24, 26, 24, 0.5); /* Dark background color */
+}
+
+#three {
+  color: #dfdada; /* White text color */
+  font-size: 1.5em;
+  text-align: center;
+  margin-left: 675px; /* Adjust font size as needed */
+}
+
+#four {
+  color: #ffffff; /* White text color */
+  border-color: #ffffff; /* White border color */
+}
+
+/* Welcome section styling */
+#welcome-section {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.welcome-message {
+  font-size: 2.5em;
+  color: #ffffff;
+  margin-top: 20px;
+  animation: slideIn 3s ease-in-out;
+}
+
+/* Animation for welcome message */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Facts section styling */
+#facts-section {
+  margin-top: 50px;
+  justify-content: center;
+}
+
+.fact-box {
+  background-color: rgba(236, 225, 225, 0.7);
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  transition: transform 0.3s, background-color 0.3s;
+  color: #0f0f0f;
+}
+
+.fact-box:hover {
+  transform: translateY(-10px);
+  background-color: #fdfafa;
+}
+
+/* Chat container styling */
+.chat-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%; /* Adjust width as needed */
+  background-color: rgba(24, 26, 24, 0.5);
+  padding: 10px;
+  /*display: flex;*/
+  /*align-items: center; /* Align items to the left */
+  color: #0f0f0f;
+}
+
+#chat-box {
+  max-height: 400px;
+  overflow-y: auto;
+  width: 850px; /* Occupy full width of the chat container */
+  padding: 10px;
+  margin-bottom: 0px;
+  margin-top: 50px;
+  margin-left: 100px;
+}
+
+.message {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  color: rgb(34, 27, 27);
+  max-width: 70%; /* Adjust the maximum width as needed */
+}
+
+.user-message {
+  background-color: #c0c0c0;
+  text-align: right;
+  align-self: flex-end; /* Align the blue message box to the right end */
+  width: 30%; /* Adjust the width of the blue message box */
+  border-radius: 5px; /* Add border radius to the blue message box */
+}
+
+.bot-message {
+  background-color: #c0c0c0;
+}
+
+#prompt-input {
+  flex-grow: 1;
+  margin-right: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 3px solid #201c1c;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255, 0.1);
+  margin-left: 25px;
+  width: 500px;
+  color: black;
+}
+#prompt-input:hover {
+  background-color: rgb(255, 255, 255, 0.8);
+}
+
+.upload-icon {
+  cursor: pointer;
+  color: #c0c0c0;
+  font-size: 35px;
+  margin-right: 20px;
+  display: inline-block;
+  margin-left: 450px;
+}
+
+.upload-icon:hover {
+  color: #c0c0c0;
+}
+#lk {
+  margin-right: 725px;
+  background-color: silver; /* Silver color */
+  border-color: silver; /* Border color */
+  color: black; /* Text color */
+}
+/* Other necessary styles */
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  background-color: rgba(41, 126, 59, 0.8); /* Slightly transparent navbar */
+}
+#content {
+  margin-left: 200px;
+}
+
+#chat-log {
+  height: 240px;
+  /*overflow-y: scroll;*/
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgba(236, 225, 225, 0.7);
+  width: 300px;
+  margin-left: 25px;
+  color: #0f0f0f;
+}
+#chat-box {
+  width: 1000px;
+  margin-left: 140px;
+  background-color: rgb(255, 255, 255, 0.1);
+}
+#chat-log div {
+  margin-bottom: 10px;
+}
+
+#chat-log div strong {
+  color: #007bff; /* Bootstrap primary color */
+}
+#joel {
+  margin-left: 85px;
+  background-color: antiquewhite;
+  margin-top: 10px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group-append .btn {
+  min-width: 100px;
+}
+
+#image-box {
+  margin-top: 50px;
+  margin-left: 50px;
+  width: 500px;
+  background-color: rgba(236, 225, 225, 0.7);
+}
+
+#image-result img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(236, 225, 225, 0.7);
+}
+
+#image-result p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: black;
+}
